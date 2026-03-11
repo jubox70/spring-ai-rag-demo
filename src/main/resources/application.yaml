@@ -1,0 +1,48 @@
+server:
+  port: 8050
+spring:
+  application:
+    name: springai
+
+  ai:
+    #chat:
+    #  client:
+    #    enabled: false
+    model:
+        #chat: "openai"
+        #chat: "anthropic"
+      embedding: "ollama"
+    ollama:
+      chat:
+        options:
+          model: "gemma3:4b"
+          #temperature: 0.1
+          #temperature: 1.0 More random
+      embedding:
+        options:
+          model: "nomic-embed-text"
+    openai:
+      api-key: "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"
+      embedding:
+        enabled: false
+
+    anthropic:
+      api-key: "dsdgdfgdgdg"
+      chat:
+        options:
+          #model: "model"
+          temperature: 0.1
+          #temperature: 1.0 More random
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        dimensions: 768
+        index-type: hnsw
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pgvector_db
+    username: root
+    password: password
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
