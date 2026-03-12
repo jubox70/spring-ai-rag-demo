@@ -1,38 +1,29 @@
 server:
-  port: 8050
+  port: 8030
+
 spring:
   application:
     name: springai
 
   ai:
-    #chat:
-    #  client:
-    #    enabled: false
     model:
-        #chat: "openai"
-        #chat: "anthropic"
-      embedding: "ollama"
+      embedding: ollama
     ollama:
       chat:
         options:
-          model: "gemma3:4b"
-          #temperature: 0.1
-          #temperature: 1.0 More random
+          model: gemma3:4b
       embedding:
         options:
-          model: "nomic-embed-text"
+          model: nomic-embed-text
     openai:
-      api-key: "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"
+      api-key: ${OPENAI_API_KEY:dfgdgdg}
       embedding:
         enabled: false
-
     anthropic:
-      api-key: "dsdgdfgdgdg"
+      api-key: ${ANTHROPIC_API_KEY:dfgdfg}
       chat:
         options:
-          #model: "model"
           temperature: 0.1
-          #temperature: 1.0 More random
     vectorstore:
       pgvector:
         initialize-schema: true
@@ -41,8 +32,8 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/pgvector_db
-    username: root
-    password: password
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
     driver-class-name: org.postgresql.Driver
-    jpa:
-      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
